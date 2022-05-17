@@ -27,6 +27,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('customer', CustomerController::class);
+Route::match(['get', 'post'],'/scheduledate/{id}', [CustomerController::class,'scheduleDate']);
 
 
 

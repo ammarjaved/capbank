@@ -58,7 +58,7 @@
             <a href="javascript:void(0)" class="btn btn-success mb-3" id="create-new-post" onclick="addPost()">Add Post</a>
         </div>
     </div>
-    <div class="row" style="clear: both;margin-top: 18px;">
+    <div class="row" style="clear: both;margin-top: 18px;width: 100%;overflow: scroll;">
         <div class="col-12">
             <table id="customer_app" class="table table-striped table-bordered">
                 <thead>
@@ -67,8 +67,21 @@
                     <th>Customer Name</th>
                     <th>Company Name</th>
                     <th>Premise Type</th>
+                    <th>house_no</th>
+                    <th>street</th>
+                    <th>postcode</th>
+                    <th>district</th>
+                    <th>state</th>
+                    <th>email</th>
+                    <th>contact_no</th>
+                    <th>tnb_meter_no</th>
+                    <th>equipment_examples</th>
+                    <th>address</th>
+                    <th>Application Status</th>
                     <th>Edit</th>
                     <th>Delete</th>
+                    <th>Schedule site vist</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -78,9 +91,25 @@
                         <td>{{ $post->customer_name }}</td>
                         <td>{{ $post->company_no }}</td>
                         <td>{{ $post->premise_type }}</td>
+                        <td>{{ $post->house_no }}</td>
+                        <td>{{ $post->street }}</td>
+                        <td>{{ $post->postcode }}</td>
+                        <td>{{ $post->district }}</td>
+                        <td>{{ $post->state }}</td>
+                        <td>{{ $post->email }}</td>
+                        <td>{{ $post->contact_no }}</td>
+                        <td>{{ $post->tnb_meter_no }}</td>
+                        <td>{{ $post->equipment_examples }}</td>
+                        <td>{{ $post->address }}</td>
+                        <td>{{ $post->application_status }}</td>
+
+
+
                         <td><a href="javascript:void(0)" data-id="{{ $post->id }}" onclick="editPost(event.target)" class="btn btn-info">Edit</a></td>
                         <td>
                             <a href="javascript:void(0)" data-id="{{ $post->id }}" class="btn btn-danger" onclick="deletePost(event.target)">Delete</a></td>
+                        <td>
+                            <a href="javascript:void(0)" data-id="{{ $post->id }}" class="btn btn-warning" onclick="addScheduleSiteVist(event.target)">Schedule/Redchedule site Vist</a></td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -123,10 +152,133 @@
                             <span id="premise_typeError" class="alert-message"></span>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">house_no</label>
+                        <div class="col-sm-12">
+                            <input class="form-control" id="house_no" name="house_no" placeholder="house no" rows="4" cols="50">
+
+                            <span id="house_no_typeError" class="alert-message"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2">street</label>
+                        <div class="col-sm-12">
+                            <input class="form-control" id="street" name="street" placeholder="street" rows="4" cols="50">
+
+                            <span id="street_typeError" class="alert-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">postcode</label>
+                        <div class="col-sm-12">
+                            <input class="form-control" id="postcode" name="postcode" placeholder="postcode" rows="4" cols="50">
+
+                            <span id="postcode_typeError" class="alert-message"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2">district</label>
+                        <div class="col-sm-12">
+                            <input class="form-control" id="district" name="district" placeholder="district" rows="4" cols="50">
+
+                            <span id="district_typeError" class="alert-message"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2">state</label>
+                        <div class="col-sm-12">
+                            <input class="form-control" id="state" name="state" placeholder="postcode" rows="4" cols="50">
+
+                            <span id="state_typeError" class="alert-message"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2">email</label>
+                        <div class="col-sm-12">
+                            <input class="form-control" id="email" name="email" placeholder="email" rows="4" cols="50">
+
+                            <span id="email_typeError" class="alert-message"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">contact_no</label>
+                        <div class="col-sm-12">
+                            <input class="form-control" id="contact_no" name="contact_no" placeholder="contact_no" rows="4" cols="50">
+
+                            <span id="contact_no_typeError" class="alert-message"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2">tnb_account_no</label>
+                        <div class="col-sm-12">
+                            <input class="form-control" id="tnb_account_no" name="tnb_account_no" placeholder="tnb_account_no" rows="4" cols="50">
+
+                            <span id="tnb_account_no_typeError" class="alert-message"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2">tnb_meter_no</label>
+                        <div class="col-sm-12">
+                            <input class="form-control" id="tnb_meter_no" name="tnb_meter_no" placeholder="tnb_meter_no" rows="4" cols="50">
+
+                            <span id="tnb_meter_no_typeError" class="alert-message"></span>
+                        </div>
+                    </div>
+
+{{--                    <div class="form-group">--}}
+{{--                        <label class="col-sm-2">address</label>--}}
+{{--                        <div class="col-sm-12">--}}
+{{--                            <input class="form-control" id="address" name="address" placeholder="address" rows="4" cols="50">--}}
+
+{{--                            <span id="address_typeError" class="alert-message"></span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+                    <div class="form-group">
+                        <label class="col-sm-2">equipment_examples</label>
+                        <div class="col-sm-12">
+                            <input class="form-control" id="equipment_examples" name="equipment_examples" placeholder="equipment_examples" rows="4" cols="50">
+
+                            <span id="equipment_examples_typeError" class="alert-message"></span>
+                        </div>
+                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick="createPost()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="modal fade" id="post-modal1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <form name="userForm" class="form-horizontal">
+                        <input type="hidden" name="app_id" id="app_id1">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2">customer_name</label>
+                            <div class="col-sm-12">
+                                <input type="date" class="form-control" id="schedule_date" name="schedule_date" placeholder="schedule_date">
+                                <span id="schedule_dateError" class="alert-message"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="scheduleSiteVist(event.target)">Save</button>
+                </div>
             </div>
         </div>
     </div>
@@ -140,6 +292,11 @@
     function addPost() {
         $("#app_id").val('');
         $('#post-modal').modal('show');
+    }
+    function addScheduleSiteVist(event) {
+        var id  = $(event).data("id");
+        $("#app_id1").val(id);
+        $('#post-modal1').modal('show');
     }
 
     function editPost(event) {
@@ -158,8 +315,46 @@
                     $("#customer_name").val(response.customer_name);
                     $("#company_no").val(response.company_no);
                     $("#premise_type").val(response.premise_type);
+                    $('#house_no').val(response.house_no)
+                    $('#street').val(response.street);
+                    $('#postcode').val(response.postcode)
+                    $('#district').val(response.district)
+                    $('#state').val(response.state);
+                    $('#email').val(response.email);
+                    $('#contact_no').val(response.contact_no);
+                    $('#tnb_account_no').val(response.tnb_account_no);
+                    $('#tnb_meter_no').val(response.tnb_meter_no);
+                    $('#equipment_examples').val(response.equipment_examples);
                     $('#post-modal').modal('show');
                 }
+            }
+        });
+    }
+
+    function scheduleSiteVist(event) {
+
+        $('#post-modal1').modal('hide');
+        var id=$("#app_id1").val();
+        var schedule_date = $('#schedule_date').val();
+
+         let _url     = `/scheduledate/${id}`;
+        let _token   = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+            url: _url,
+            type: "POST",
+            data: {
+                id: id,
+                schedule_date: schedule_date,
+                _token: _token
+            },
+            success: function(response) {
+                if(response.code == 200) {
+                    $('#post-modal1').modal('hide');
+                }
+            },
+            error: function(response){
+                $('#schedule_dateError').text(response.responseJSON.errors.proposed_site_visit_date);
             }
         });
     }
@@ -168,6 +363,23 @@
         var customer_name = $('#customer_name').val();
         var company_no = $('#company_no').val();
         var premise_type = $('#premise_type').val();
+
+        var house_no = $('#house_no').val();
+        var street = $('#street').val();
+        var postcode = $('#postcode').val();
+
+        var district = $('#district').val();
+        var state = $('#state').val();
+        var email = $('#email').val();
+
+        var contact_no = $('#contact_no').val();
+        var tnb_account_no = $('#tnb_account_no').val();
+        var tnb_meter_no = $('#tnb_meter_no').val();
+
+        var equipment_examples = $('#equipment_examples').val();
+
+
+
         var id = $('#app_id').val();
 
         let _url     = `/customer`;
@@ -181,6 +393,16 @@
                 customer_name: customer_name,
                 company_no: company_no,
                 premise_type: premise_type,
+                house_no: house_no,
+                street: street,
+                postcode: postcode,
+                district: district,
+                state: state,
+                email: email,
+                contact_no: contact_no,
+                tnb_account_no: tnb_account_no,
+                tnb_meter_no: tnb_meter_no,
+                equipment_examples: equipment_examples,
                 _token: _token
             },
             success: function(response) {
@@ -189,22 +411,79 @@
                         $("#row_"+id+" td:nth-child(2)").html(response.data.customer_name);
                         $("#row_"+id+" td:nth-child(3)").html(response.data.company_no);
                         $("#row_"+id+" td:nth-child(3)").html(response.data.premise_type);
+
+                        $("#row_"+id+" td:nth-child(2)").html(response.data.house_no);
+                        $("#row_"+id+" td:nth-child(3)").html(response.data.street);
+                        $("#row_"+id+" td:nth-child(3)").html(response.data.postcode);
+
+                        $("#row_"+id+" td:nth-child(2)").html(response.data.district);
+                        $("#row_"+id+" td:nth-child(3)").html(response.data.state);
+                        $("#row_"+id+" td:nth-child(3)").html(response.data.email);
+
+                        $("#row_"+id+" td:nth-child(2)").html(response.data.contact_no);
+                        $("#row_"+id+" td:nth-child(3)").html(response.data.tnb_account_no);
+                        $("#row_"+id+" td:nth-child(3)").html(response.data.tnb_meter_no);
+                        $("#row_"+id+" td:nth-child(3)").html(response.data.equipment_examples);
+
                     } else {
                         $('table tbody').prepend('<tr id="row_'+response.data.id+'"><td>'+response.data.id+'</td><td>'+response.data.customer_name+
-                            '</td><td>'+response.data.company_no+'</td><td>'+response.data.premise_type+'</td><td><a href="javascript:void(0)" data-id="'+response.data.id+'" onclick="editPost(event.target)" class="btn btn-info">Edit</a></td><td><a href="javascript:void(0)" data-id="'+response.data.id+'" class="btn btn-danger" onclick="deletePost(event.target)">Delete</a></td></tr>');
+                            '</td><td>'+response.data.company_no+ '</td>' +
+                            '<td>'+response.data.house_no+'</td>' +
+                            '<td>'+response.data.postcode+'</td>' +
+                            '<td>'+response.data.district+'</td>' +
+                            '<td>'+response.data.state+'</td>' +
+                            '<td>'+response.data.email+'</td>' +
+
+                            '<td>'+response.data.contact_no+'</td>' +
+                            '<td>'+response.data.tnb_account_no+'</td>' +
+                            '<td>'+response.data.tnb_meter_no+'</td>' +
+                            '<td>'+response.data.equipment_examples+'</td>' +
+
+
+                            '<td><a href="javascript:void(0)" data-id="'+response.data.id+'" onclick="editPost(event.target)" class="btn btn-info">Edit</a></td><td><a href="javascript:void(0)" data-id="'+response.data.id+'" class="btn btn-danger" onclick="deletePost(event.target)">Delete</a></td></tr>');
                     }
+
                     $('#customer_name').val('');
                     $('#company_no').val('');
                     $('#premise_type').val('');
 
+                    $('#house_no').val('');
+                    $('#street').val('');
+                    $('#postcode').val('');
+
+                    $('#district').val('');
+                    $('#state').val('');
+                    $('#email').val('');
+
+                    $('#contact_no').val('');
+                    $('#tnb_account_no').val('');
+                    $('#tnb_meter_no').val('');
+                    $('#equipment_examples').val('');
+
+
+
                     $('#post-modal').modal('hide');
                 }
             },
-            error: function(response) {
+            error: function(response){
+
                 $('#titleError').text(response.responseJSON.errors.customer_name);
                 $('#descriptionError').text(response.responseJSON.errors.company_no);
                 $('#premise_typeError').text(response.responseJSON.errors.premise_type);
-            }
+                $('#house_no_typeError').text(response.responseJSON.errors.house_no);
+                $('#street_typeError').text(response.responseJSON.errors.street);
+                $('#postcode_typeError').text(response.responseJSON.errors.postcode);
+                $('#district_typeError').text(response.responseJSON.errors.district);
+                $('#state_typeError').text(response.responseJSON.errors.state);
+                $('#email_typeError').text(response.responseJSON.errors.email);
+                $('#contact_no_typeError').text(response.responseJSON.errors.contact_no);
+                $('#tnb_account_no_typeError').text(response.responseJSON.errors.tnb_account_no);
+                $('#tnb_meter_no_typeError').text(response.responseJSON.errors.tnb_meter_no);
+                $('#equipment_examples_typeError').text(response.responseJSON.errors.equipment_examples);
+
+
+
+    }
         });
     }
 
