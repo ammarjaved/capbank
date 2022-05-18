@@ -31,11 +31,8 @@
 {{--                <span class="navbar-toggler-icon"></span>--}}
 {{--            </button>--}}
             <div class="dropdown" style="margin-top: 5px;float: right;">
-                @if(@isset(Auth::user()->name))
                 <button class="btn  dropdown-toggle"  type="button" data-toggle="dropdown">{{ Auth::user()->name }}
                     <span class="caret"></span></button>
-                @else
-                    <script>window.location = "/login";</script>                @endif
                 <ul class="dropdown-menu">
                     <li> <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
