@@ -8,7 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class site_visit_data extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        
-    ];
+    public $timestamps = false;
 }
